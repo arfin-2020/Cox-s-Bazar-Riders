@@ -4,7 +4,6 @@ import './Header'
 const Header = () => {
     return (
         <div>
-     
             <Navbar bg="light" expand="lg">
           <Navbar.Brand href="/home">Cox's Bazar Riders</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
