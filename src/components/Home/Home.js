@@ -6,27 +6,27 @@ import './Home.css'
 const Home = () => {
     const style = {
         display: 'flex',
-        margin: '40px',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between', 
+        
     }
     const vahicles = [
         {
-            title: "Bike",
+            type: "Bike",
             id: 1,
             imgUrl: 'https://i.ibb.co/Nng4BHR/617-OW8-TPOWL-SX355.jpg'
         },
         {
-            title: "Car",
+            type: "Car",
             id: 2,
             imgUrl: 'https://i.ibb.co/dKz27Y8/Maruti-Suzuki-Alto-K10-Right-Front-Three-Quarter-48397-ol.jpg'
         },
         {
-            title: "Bus",
+            type: "Bus",
             id: 3,
             imgUrl: 'https://i.ibb.co/qgDddLt/bus-216473-8403-lg.jpg'
         },
         {
-            title: "Train",
+            type: "Train",
             id: 4,
             imgUrl: 'https://i.ibb.co/Pt2ctyv/unnamed.jpg'
         }
@@ -34,7 +34,7 @@ const Home = () => {
     ]
     return (
         <div style={style} className="header">
-            <h1>This is home component</h1>
+           
             {
                 vahicles.map(vahicle=><Vehicle vahicle={vahicle} key = {vahicle.id}></Vehicle>)
             }
