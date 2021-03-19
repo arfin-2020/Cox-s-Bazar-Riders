@@ -1,3 +1,9 @@
 .main-container {
     margin-top: 250px;
+    height: 500px;
+}
+
+.main-container img {
+    width: 300px;
+    height: 250px;
 }

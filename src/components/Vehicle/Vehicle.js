@@ -29,28 +29,26 @@ const useStyles = makeStyles((theme) => ({
 export default function Vehicle({vahicle}){
     const classes = useStyles();
     const history = useHistory()
-    const handleBook = (bedType) => {
-        history.push(`/book/${bedType}`);
+    const handleBook = (type) => {
+        history.push(`/book/${type}`);
     }
     return (
        
         <div className="main-container container">
+        <Button onClick={() => handleBook(vahicle.type)} >
         <Card className={classes.root}>
         <CardHeader
           title={vahicle.type}
         />
-        <CardMedia
+        {/* <CardMedia
           className={classes.media}
-          image={vahicle.imgUrl}
-          title="Paella dish"
-        />
-        <img src={`/images/${vahicle.bedType}.png`} alt=""/>
-        <CardActions disableSpacing> 
-        <Button onClick={() => handleBook(vahicle.type)} variant="contained" color="secondary">
-              Book
-          </Button>
-        </CardActions>
-      </Card>
+          image={vahicle.imgUrl}  
+          component='img'
+         width='140'
+        /> */}
+        <img src={`${vahicle.imgUrl}.png`} alt=""/>
+      </Card> 
+      </Button>
         </div>
        
     );
