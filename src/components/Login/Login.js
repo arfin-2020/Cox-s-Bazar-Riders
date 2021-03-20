@@ -104,21 +104,21 @@ const Login = () => {
     }
     
     return (
-        <div>
+        <div className = "login-container container">
         {!newUser && <h1>login</h1>}
         {newUser && <h1>Create an Account</h1>}
         <form onSubmit = {handleSubmit}>
-        {newUser && <input className="formControl" type="text" onBlur={handleBlur} name='name' placeholder="Your Name" />}<br/><br/>
-            <input type="text" className="formControl" name="email" onBlur = {handleBlur}  placeholder='Username or Email' required/> <br/><br/>
-            <input type="password" className="formControl" name="password" onBlur = {handleBlur}  placeholder='Password' required/><br/><br/>
-            {newUser && <input type="submit" value="Create an account"/>}
-             {!newUser && <input type="submit" value="Log in"/>}<br/>
+        {newUser && <input className="inputfrom" type="text" onBlur={handleBlur} name='name' placeholder="Your Name" />}<br/><br/>
+            <input type="text" className="inputfrom" name="email" onBlur = {handleBlur}  placeholder='Username or Email' required/> <br/><br/>
+            <input type="password" className="inputfrom" name="password" onBlur = {handleBlur}  placeholder='Password' required/><br/><br/>
+            {newUser && <input className= 'btn btn-success inputfrom' type="submit" value="Create an account"/>}
+             {!newUser && <input className= 'btn btn-success inputfrom' type="submit" value="Log in"/>}<br/>
              {newUser && <input type="checkbox" name = "checkbox"/>}
              {newUser && <label htmlFor="checkbox">Remember me</label>}
         </form>
         <p onClick={() => setnewUser(!newUser)} name = 'newUser'>Don't have an account? {!newUser && <span  style={{color:"red",cursor: 'pointer'}}>Create account</span>}
         {newUser && <span  style={{color:"red",cursor: 'pointer'}}>Log in</span>}</p>
-         <button onClick = {googlehandler}>Sign in with Google</button>
+         <button className= 'btn btn-success inputfrom' onClick = {googlehandler}>Sign in with Google</button>
         <p style={{color:"red"}}>{user.error}</p>
         {user.success && <p style={{color:"green"}}> User {newUser ? "Created" : "logged in"} Successfully</p>}     
         </div>

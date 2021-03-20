@@ -32,21 +32,22 @@ export default function Vehicle({vahicle}){
     }
     return (
        
-        <div className="main-container container">
+        <div className="row">
+          <div className="col-sm-12 col-md-6">
+          <div className="main-container container">
         <Button onClick={() => handleBook(vahicle.type)} >
         <Card className={classes.root}>
         <CardHeader
           title={vahicle.type}
         />
-        {/* <CardMedia
-          className={classes.media}
-          image={vahicle.imgUrl}  
-          component='img'
-         width='140'
-        /> */}
         <img src={`${vahicle.imgUrl}.png`} alt=""/>
       </Card> 
       </Button>
+        </div>
+          </div>
+          <div className="col-sm-12 col-md-6">
+           
+          </div>
         </div>
        
     );
