@@ -14,5 +14,8 @@
 
 .inputfrom:hover {
     border: 1px orange solid;
-    /* background-color: orange; */
+}
+
+img {
+    margin-top: 70px;
 }

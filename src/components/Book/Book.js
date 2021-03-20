@@ -29,6 +29,8 @@ const Book = () => {
      </div>
     </InfoWindow>
 </Map> */}
+                {/* Here I want use google map but not install here so I can't able to use google map just using a image */}
+                <img src="http://www.techetron.com/wp-content/uploads/2017/11/IMG_8308-750x430.png" alt="googleImg"/>
         </div>
         {/* <p>Want a <Link to="/home">different vehicles?</Link> </p> */}
     </div>
