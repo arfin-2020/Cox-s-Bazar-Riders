@@ -1,0 +1,18 @@
+.from-div {
+    background-color: #f8f5f1;
+    width: 400px;
+    margin-top: 70px;
+    margin-left: 50px;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.inputfrom {
+    height: 40px;
+    width: 300px;
+}
+
+.inputfrom:hover {
+    border: 1px orange solid;
+    /* background-color: orange; */
+}
