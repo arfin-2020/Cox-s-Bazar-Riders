@@ -1,12 +1,12 @@
 
 import React, { useContext, useState } from 'react';
-
 import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from '../../config';
 import './Login.css'
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router';
+
 
 const Login = () => {
     const [loggedInUser,setLoggedInUser] = useContext(UserContext);
@@ -73,7 +73,7 @@ const Login = () => {
                 newUserInfo.error = '';
                 newUserInfo.success = true;
                 setUser(newUserInfo);
-                // updateUserName(users.name)
+              
              
               })
   .catch((error) => {
@@ -116,9 +116,10 @@ const Login = () => {
              {newUser && <input type="checkbox" name = "checkbox"/>}
              {newUser && <label htmlFor="checkbox">Remember me</label>}
         </form>
+        
         <p onClick={() => setnewUser(!newUser)} name = 'newUser'>Don't have an account? {!newUser && <span  style={{color:"red",cursor: 'pointer'}}>Create account</span>}
         {newUser && <span  style={{color:"red",cursor: 'pointer'}}>Log in</span>}</p>
-         <button className= 'btn btn-success inputfrom' onClick = {googlehandler}>Sign in with Google</button>
+       <button className= 'btn btn-success inputfrom' onClick = {googlehandler}>Sign in with Google</button>
         <p style={{color:"red"}}>{user.error}</p>
         {user.success && <p style={{color:"green"}}> User {newUser ? "Created" : "logged in"} Successfully</p>}     
         </div>

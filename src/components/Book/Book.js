@@ -20,10 +20,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Book = () => {
     const {type} = useParams();
+    console.log("heda",type);
     const classes = useStyles();
+    // const matchingVahicles = vahicle.find(p => p.id === type.id)
+    // console.log(matchingVahicles)
     return (
         <div className="row">
-        {/* <h1>Let's book a {type} vehicles.</h1> */}
         <div className="col-sm-12 col-md-6">
             <div className="from-div">
                 <h4>Pick from</h4>
@@ -59,8 +61,9 @@ const Book = () => {
 </Map> */}
                 {/* Here I want use google map but not install here so I can't able to use google map just using a image */}
                 <img src="http://www.techetron.com/wp-content/uploads/2017/11/IMG_8308-750x430.png" alt="googleImg"/>
+                {/* <img src={vahicle.imgUrl} alt=""/> */}
         </div>
-        {/* <p>Want a <Link to="/home">different vehicles?</Link> </p> */}
+      
     </div>
     );
 };
