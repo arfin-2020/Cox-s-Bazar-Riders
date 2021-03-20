@@ -1,10 +1,18 @@
 
-import React, { useState } from 'react';
-// import { Form, Button } from 'react-bootstrap';
+import React, { useContext, useState } from 'react';
+
 import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from '../../config';
+import './Login.css'
+import { UserContext } from '../../App';
+import { useHistory, useLocation } from 'react-router';
+
 const Login = () => {
+    const [loggedInUser,setLoggedInUser] = useContext(UserContext);
+    const history = useHistory();
+    const location = useLocation();
+    const { from } = location.state || { from: { pathname: "/" } };
     if (firebase.apps.length === 0) {
         firebase.initializeApp(firebaseConfig);
       }
@@ -20,6 +28,23 @@ const Login = () => {
         success: false
     
       })
+      
+      //google sign in
+    const googlehandler =  () =>{
+        const provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    const {displayName,email}= result.user;
+    const signInUser = {name: displayName,email};
+    setLoggedInUser(signInUser);
+    history.replace(from);
+  }).catch((error) => {
+ 
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });
+    }
     const handleBlur = (e) =>{
         let isFieldValid = true;
         if(e.target.name === 'email'){
@@ -77,47 +102,25 @@ const Login = () => {
     }
         e.preventDefault();
     }
+    
     return (
         <div>
-        <h1>Create an Account</h1>
+        {!newUser && <h1>login</h1>}
+        {newUser && <h1>Create an Account</h1>}
         <form onSubmit = {handleSubmit}>
-        {newUser && <input type="text" onBlur={handleBlur} name='name' placeholder="Your Name" />}<br/><br/>
-            <input type="text" name="email" onBlur = {handleBlur}  placeholder='Username or Email' required/> <br/><br/>
-            <input type="password" name="password" onBlur = {handleBlur}  placeholder='Password' required/><br/><br/>
-            <input type="submit" value="Submit"/>
-           {/* {!newUser && <p>Already have an account? </p>} */}
+        {newUser && <input className="formControl" type="text" onBlur={handleBlur} name='name' placeholder="Your Name" />}<br/><br/>
+            <input type="text" className="formControl" name="email" onBlur = {handleBlur}  placeholder='Username or Email' required/> <br/><br/>
+            <input type="password" className="formControl" name="password" onBlur = {handleBlur}  placeholder='Password' required/><br/><br/>
+            {newUser && <input type="submit" value="Create an account"/>}
+             {!newUser && <input type="submit" value="Log in"/>}<br/>
+             {newUser && <input type="checkbox" name = "checkbox"/>}
+             {newUser && <label htmlFor="checkbox">Remember me</label>}
         </form>
-        <p onClick={() => setnewUser(!newUser)} name = 'newUser'>Don't have an account? <span  style={{color:"red",cursor: 'pointer'}}>create account</span></p> 
-        {/* <input type="checkbox" onChange={() => setnewUser(!newUser)} name = 'newUser'/> */}
-        {/* <label htmlFor="newUser">New user signup</label> */}
+        <p onClick={() => setnewUser(!newUser)} name = 'newUser'>Don't have an account? {!newUser && <span  style={{color:"red",cursor: 'pointer'}}>Create account</span>}
+        {newUser && <span  style={{color:"red",cursor: 'pointer'}}>Log in</span>}</p>
+         <button onClick = {googlehandler}>Sign in with Google</button>
         <p style={{color:"red"}}>{user.error}</p>
-        {user.success && <p style={{color:"green"}}> User {newUser ? "Created" : "logged in"} Successfully</p>}
-
-
-
-
-
-
-{/* <Form>
-  <Form.Group controlId="formBasicEmail">
-    <Form.Label>Email address</Form.Label>
-    <Form.Control type="email" placeholder="Enter email" />
-    <Form.Text className="text-muted">
-      We'll never share your email with anyone else.
-    </Form.Text>
-  </Form.Group>
-
-  <Form.Group controlId="formBasicPassword">
-    <Form.Label>Password</Form.Label>
-    <Form.Control type="password" placeholder="Password" />
-  </Form.Group>
-  <Form.Group controlId="formBasicCheckbox">
-    <Form.Check type="checkbox" label="Check me out" />
-  </Form.Group>
-  <Button variant="primary" type="submit">
-    Submit
-  </Button>
-</Form> */}
+        {user.success && <p style={{color:"green"}}> User {newUser ? "Created" : "logged in"} Successfully</p>}     
         </div>
     );
 };

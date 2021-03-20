@@ -9,9 +9,16 @@ import Login from './components/Login/Login';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Book from './components/Book/Book';
+import { createContext, useState } from 'react';
+import PrivateRouter from './components/PrivateRouter/PrivateRouter';
+
+export const UserContext  = createContext(); 
 function App() {
+  const [loggedInUser,setLoggedInUser] = useState({});
   return (
     <div className="App">
+    <UserContext.Provider value={[loggedInUser,setLoggedInUser]}>
+    <p>Name: {loggedInUser.name}</p>
      <Router>
           <Header/>
           <Switch>
@@ -21,14 +28,15 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
-            <Book path="/book">
+            <PrivateRouter path="/book/:type">
               <Book />
-            </Book>
+            </PrivateRouter>
             <Route exact path="/">
               <Home />
             </Route>
           </Switch>
       </Router>
+      </UserContext.Provider>
     </div>
   );
 }
